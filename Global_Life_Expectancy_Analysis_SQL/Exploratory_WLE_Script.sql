@@ -306,5 +306,3 @@ GROUP BY COUNTRY
 HAVING COUNT(Country) = 16
 ;
 #Returns 72
-
-SELECT user, host, plugin FROM mysql.user;
