@@ -104,11 +104,6 @@ SELECT DISTINCT
 FROM Ordered
 ORDER BY Life_Expectancy_Change DESC;
 
-	
-
-
-
-
 #Computes the average life expectancy for each Year, ignoring zero values.
 #Rounded to 1 decimal.
 #Orders results chronologically.
