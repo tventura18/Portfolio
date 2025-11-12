@@ -308,8 +308,3 @@ HAVING COUNT(Country) = 16
 #Returns 72
 
 SELECT user, host, plugin FROM mysql.user;
-
-ALTER USER 'root'@'localhost' 
-IDENTIFIED WITH mysql_native_password 
-BY 'StrongPassword123!';
-FLUSH PRIVILEGES;
