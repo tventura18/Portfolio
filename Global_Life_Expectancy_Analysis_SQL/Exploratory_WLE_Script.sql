@@ -25,69 +25,8 @@ AND MIN(`Life expectancy`) <> 0
 ORDER BY Life_Increase_15_Years DESC
 ;
 
-/***WITH Expectancy_Range AS (
-    SELECT
-        Country,
-        Year,
-        `Life expectancy`,
-        MAX(`Life expectancy`) OVER(PARTITION BY Country) AS Max_Life_Expectancy,
-        MIN(`Life expectancy`) OVER(PARTITION BY Country) AS Min_Life_Expectancy
-    FROM world_life_expectancy
-)
-SELECT 
-    e1.Country,
-    #MAX(CASE WHEN e1.`Life expectancy` = e1.Max_Life_Expectancy THEN e1.Year END) AS Year_Max_Exp,
-    MIN(CASE WHEN e1.`Life expectancy` = e1.Min_Life_Expectancy THEN e1.Year END) AS Year_Min_Exp,
-    e1.Max_Life_Expectancy,
-    e1.Min_Life_Expectancy,
-    ROUND(e1.Max_Life_Expectancy - e1.Min_Life_Expectancy, 1) AS Life_Increase
-FROM Expectancy_Range e1
-GROUP BY 
-    e1.Country,
-    e1.Max_Life_Expectancy,
-    e1.Min_Life_Expectancy
-ORDER BY 
-    Life_Increase DESC;
 
-
-WITH Max_Expectancy as (
-SELECT Country,
-Year,
-`Life expectancy` as Life_Expectancy_Max,
-MAX(`Life expectancy`) OVER(PARTITION BY Country) as MAX_Life_expectancy
-#ROUND(MAX(`Life expectancy`)-MIN(`Life expectancy`), 1) as Life_Increase_15_Yearsworld_life_expectancy
-FROM world_life_expectancy
-#GROUP BY Country, Year
-#HAVING MAX(`Life expectancy`)<> 0
-#AND MIN(`Life expectancy`) <> 0
-ORDER BY Country, Year
-),
-Min_Expectancy as (
-SELECT Country,
-Year,
-`Life expectancy` as Life_Expectancy_Min,
-MIN(`Life expectancy`) OVER(PARTITION BY Country) as MIN_Life_expectancy
-#ROUND(MAX(`Life expectancy`)-MIN(`Life expectancy`), 1) as Life_Increase_15_Yearsworld_life_expectancy
-FROM world_life_expectancy
-#GROUP BY Country, Year
-#HAVING MAX(`Life expectancy`)<> 0
-#AND MIN(`Life expectancy`) <> 0
-ORDER BY Country, Year
-)
-
-SELECT
-	MAX_Expectancy.Country,
-	MAX_Expectancy.Year as Year_Max_Exp, 
-    MIN_Life_expectancy.Year as Year_Min_Exp,
-    #Life_Expectancy,
-    MAX_Life_expectancy,
-    MIN_Life_expectancy
-FROM MAX_Expectancy 
-	INNER JOIN MIN_Expectancy
-		ON MAX_Expectancy.Country = MIN_Expectancy.Country
-WHERE Life_Expectancy_Max = MAX_Life_expectancy OR
-Life_Expectancy_Min = MIN_Life_expectancy;***/
-
+/***Testing MAX verses MIN values for different countries ***/
 SELECT Country,
 Year,
 `Life expectancy` as Life_Expectancy_Max,
@@ -100,36 +39,6 @@ FROM world_life_expectancy
 WHERE Country = 'Haiti'
 ORDER BY Country, Year;
 
-/***WITH LifeStats AS (
-    SELECT
-        Country,
-        Year,
-        `Life expectancy`,
-        MAX(`Life expectancy`) OVER (PARTITION BY Country) AS Max_Life_Expectancy,
-        MIN(`Life expectancy`) OVER (PARTITION BY Country) AS Min_Life_Expectancy
-    FROM world_life_expectancy
-)
-SELECT
-    max_tbl.Country,
-    max_tbl.Year AS Year_Max_Life_Exp,
-    max_tbl.Max_Life_Expectancy,
-    min_tbl.Year AS Year_Min_Life_Exp,
-    min_tbl.Min_Life_Expectancy,
-    ROUND(max_tbl.Max_Life_Expectancy - min_tbl.Min_Life_Expectancy, 1) AS Life_Expectancy_Change,
-    CASE 
-        WHEN max_tbl.Year > min_tbl.Year THEN '+ Increase'
-        WHEN max_tbl.Year < min_tbl.Year THEN '- Decrease'
-        ELSE 'No Change'
-    END AS Trend
-FROM LifeStats max_tbl
-JOIN LifeStats min_tbl
-    ON max_tbl.Country = min_tbl.Country
-WHERE 
-    max_tbl.`Life expectancy` = max_tbl.Max_Life_Expectancy
-    AND min_tbl.`Life expectancy` = min_tbl.Min_Life_Expectancy
-ORDER BY 
-    Life_Expectancy_Change DESC;
-***/
 /*** Finding Life expectancy from 2007-2022***/
 WITH Ordered AS (
     SELECT
