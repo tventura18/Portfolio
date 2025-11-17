@@ -5,20 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Toni Ventura | Data Portfolio</title>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!---<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">--->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      html.classList.toggle('dark');
-      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    tailwind.config = {
+      darkMode: 'class',
     }
+  </script>
 
-    window.onload = () => {
-      if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
-      }
-      lucide.createIcons();
-    };
+  <script>
+    function updateToggle() {
+    const html = document.documentElement;
+    const thumb = document.getElementById("toggle-thumb");
+
+    if (html.classList.contains("dark")) {
+      thumb.style.transform = "translateX(24px)";
+    } else {
+      thumb.style.transform = "translateX(0px)";
+    }
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.classList.toggle("dark");
+    localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+    updateToggle();
+  }
+
+  window.onload = () => {
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+    updateToggle();
+  };
   </script>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 font-inter">
@@ -26,7 +45,13 @@
   <header class="bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center py-16">
     <h1 class="text-4xl font-bold mb-3">Toni Ventura</h1>
     <p class="text-lg opacity-90">Healthcare Data Analyst | SQL • ETL • Data Visualization • Machine Learning</p>
-    <button onclick="toggleTheme()" class="mt-6 px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-blue-700 transition">🌓 Toggle Theme</button>
+    <!---<button onclick="toggleTheme()" class="mt-6 px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-blue-700 transition">🌓 Toggle Theme</button>--->
+    <button onclick="toggleTheme()" class="mt-6 mx-auto flex items-center justify-center rounded-full p-2 
+         transition border border-white hover:bg-white hover:text-blue-700">mode
+      <div id="toggle-track" class="w-12 h-6 flex items-center rounded-full bg-white dark:bg-gray-700 transition">
+        <div id="toggle-thumb" class="w-5 h-5 bg-blue-600 dark:bg-yellow-400 rounded-full transform transition-transform"></div>
+      </div>
+    </button>
   </header>
 
   <!-- Main Content -->
@@ -36,7 +61,7 @@
       <h2 class="flex items-center gap-3 text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-6">
         <i data-lucide="database"></i> SQL & Data Analysis
       </h2>
-       <!-- 🏥 Healthcare SQL Projects -->
+       <!-- Healthcare SQL Projects -->
      <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Healthcare SQL Projects</h3>
       <div class="grid md:grid-cols-2 gap-8 mb-10">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
@@ -44,21 +69,21 @@
             <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
               Analyzed large-scale claims data using complex SQL joins and window functions to identify cost trends and reduce variance across providers.
             </p>
-            <p class="text-sm mb-3"><strong>Tech stack:</strong> SQL, PostgreSQL, Oracle, DBeaver</p>
+            <p class="text-sm mb-3"><strong>Tech stack:</strong> SQL, PostgreSQL, BigQuery, DBeaver</p>
               <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
       </div>
 
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+    <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
       <h4 class="font-bold text-lg mb-2">Provider Performance Metrics</h4>
       <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
         Created SQL-based dashboards tracking provider productivity, patient outcomes, and care quality KPIs for FQHC operations.
       </p>
       <p class="text-sm mb-3"><strong>Tech stack:</strong> SQL, Power BI, PostgreSQL</p>
       <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-    </div>
+    </div>--->
   </div>
       </div>
-      <!-- 💼 Miscellaneous SQL Projects -->
+      <!-- Miscellaneous SQL Projects -->
       <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Miscellaneous SQL Projects</h3>
      <div class="grid md:grid-cols-2 gap-8">
       <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
@@ -87,11 +112,11 @@
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Built a GCP-based ETL pipeline using Python to transform and load FHIR JSON data into BigQuery for analysis.</p>
           <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">Data Quality Automation</h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Developed automated SQL and Python scripts for validating and profiling healthcare data pipelines.</p>
           <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>
+        </div>--->
       </div>
     </section>
 
@@ -103,22 +128,22 @@
     
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Card 1 -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">Mushroom Classification Model</h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
             Trained a Decision Tree model to predict mushroom edibility and identify key biological traits influencing toxicity.
           </p>
           <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>
+        </div>--->
     
         <!-- Card 2 -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">Healthcare Cost Prediction</h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
             Developed a regression model to forecast patient length of stay and treatment costs using real-world hospital data.
           </p>
           <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>
+        </div>--->
     
         <!-- Card 3 (CKD) -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
@@ -148,11 +173,11 @@
         <i data-lucide="bar-chart-3"></i> Power BI & Visualization
       </h2>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">Population Health Dashboard</h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Created interactive dashboards tracking hypertension control, demographics, and social determinants across clinics.</p>
           <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>
+        </div>--->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">Revenue Cycle Insights</h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Developed Power BI reports analyzing claims, denials, and payments to improve financial efficiency.</p>
