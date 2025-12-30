@@ -25,15 +25,15 @@
           └────────────────────────┘
                      │
                      │
- ┌─────────────────────────┐        	        ┌──────────────────────────┐
- │     dim_item_code       │        					│  dim_organizations       │
- │-------------------------│        					│------------------------- │
- │ surrogate_item_code_id PK│        			    │ surrogate_organization_id PK│
- │ item_code (source)      │        					│ organization_id (source) │
- │ item_description        │        					│ organization_name        │
- │ item_code_system        │        				  │ organization_type        │
- │ item_type               │        					│ active                   │
- └─────────────────────────┘                  └──────────────────────────┘
+ ┌─────────────────────────┐        	          ┌──────────────────────────┐
+ │     dim_item_code       │        	          │  dim_organizations       │
+ │-------------------------│        		│------------------------- │
+ │ surrogate_item_code_id PK│        	          │ surrogate_organization_id PK│
+ │ item_code (source)      │        		│ organization_id (source) │
+ │ item_description        │        		│ organization_name        │
+ │ item_code_system        │        		│ organization_type        │
+ │ item_type               │        		│ active                   │
+ └─────────────────────────┘                      └──────────────────────────┘
                      │                     										│
                      └────────────────────────────────────────┘
                                   │
