@@ -1,0 +1,104 @@
+
+          ┌─────────────────────────┐
+          │      dim_patient        │
+          │-------------------------│
+          │ surrogate_patient_id PK │
+          │ patient_id (source)    │
+          │ gender                 │
+          │ birth_date             │
+          │ race                   │
+          │ ethnicity              │
+          │ marital_status         │
+          └────────────────────────┘
+                     │
+                     │
+          ┌─────────────────────────┐
+          │     dim_encounter       │
+          │-------------------------│
+          │ surrogate_encounter_id PK│
+          │ encounter_id (source)  │
+          │ encounter_class        │
+          │ start_datetime         │
+          │ end_datetime           │
+          │ surrogate_patient_id FK│
+          │ patient_id (source)    │
+          └────────────────────────┘
+                     │
+                     │
+ ┌─────────────────────────┐        	        ┌──────────────────────────┐
+ │     dim_item_code       │        					│  dim_organizations       │
+ │-------------------------│        					│------------------------- │
+ │ surrogate_item_code_id PK│        			    │ surrogate_organization_id PK│
+ │ item_code (source)      │        					│ organization_id (source) │
+ │ item_description        │        					│ organization_name        │
+ │ item_code_system        │        				  │ organization_type        │
+ │ item_type               │        					│ active                   │
+ └─────────────────────────┘                  └──────────────────────────┘
+                     │                     										│
+                     └────────────────────────────────────────┘
+                                  │
+                     ┌─────────────────────────┐
+                     │    fact_claim_item      │
+                     │-------------------------│
+                     │ claim_id                │
+                     │ eob_id                  │
+                     │ item_sequence           │
+                     │ surrogate_patient_id FK │
+                     │ surrogate_provider_id FK│
+                     │ surrogate_payer_id FK   │
+                     │ service_date_id FK      │
+                     │ surrogate_encounter_id FK│
+                     │ surrogate_item_code_id FK│
+                     │ submitted_amount        │
+                     │ item_amount             │
+                     │ submitted_amount_adj    │
+                     │ allowed_amount          │
+                     │ payer_paid_amount       │
+                     │ coinsurance_amount      │
+                     │ deductible_amount       │
+                     │ patient_id (source)     │
+                     │ provider_id (source)    │
+                     │ payer_id (source)       │
+                     │ service_code (source)   │
+                     └─────────────────────────┘
+                                  │
+                                  │
+                      ┌───────────────────────┐
+                      │      dim_date         │
+                      │-----------------------│
+                      │ date_id (PK)          │
+                      │ year                  │
+                      │ quarter               │
+                      │ month                 │
+                      │ day                   │
+                      │ weekday               │
+                      │ week_of_year          │
+                      └───────────────────────┘
+                                  	│
+                                  	│
+                      ┌─────────────────────────────┐
+                      │       dim_payer             │
+                      │-----------------------------│
+                      │ surrogate_payer_id PK       │
+                      │ payer_id (source)           │
+                      │ payor                       │
+                      │ payer_type                  │
+                      └─────────────────────────────┘
+                                  	│
+                                  	│
+                      ┌─────────────────────────────┐
+                      │  dim_diagnosis (optional)   │
+                      │-----------------------------│
+                      │ surrogate_diagnosis_id PK   │
+                      │ diagnosis_code (source)     │
+                      └─────────────────────────────┘
+                                  │
+                                  │
+                      ┌─────────────────────────────┐
+                      │ bridge_claim_diagnosis      │
+                      │-----------------------------│
+                      │ surrogate_claim_id FK       │
+                      │ surrogate_diagnosis_id FK   │
+                      │ claim_id (source)           │
+                      │ diagnosis_code (source)     │
+                      └─────────────────────────────┘
