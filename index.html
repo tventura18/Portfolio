@@ -5,49 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Toni Ventura | Data Portfolio</title>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!---<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">--->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      darkMode: 'class',
-    }
+    tailwind.config = { darkMode: 'class' }
   </script>
-
   <script>
     function updateToggle() {
-    const html = document.documentElement;
-    const thumb = document.getElementById("toggle-thumb");
-
-    if (html.classList.contains("dark")) {
-      thumb.style.transform = "translateX(24px)";
-    } else {
-      thumb.style.transform = "translateX(0px)";
+      const html = document.documentElement;
+      const thumb = document.getElementById("toggle-thumb");
+      thumb.style.transform = html.classList.contains("dark") ? "translateX(24px)" : "translateX(0px)";
     }
-  }
-
-  function toggleTheme() {
-    const html = document.documentElement;
-    html.classList.toggle("dark");
-    localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
-    updateToggle();
-  }
-
-  window.onload = () => {
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.classList.add("dark");
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle("dark");
+      localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      updateToggle();
     }
-    updateToggle();
-  };
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark");
+      updateToggle();
+    };
   </script>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 font-inter">
+
   <!-- Header -->
   <header class="bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center py-16">
     <h1 class="text-4xl font-bold mb-3">Toni Ventura</h1>
     <p class="text-lg opacity-90">Healthcare Data Analyst | SQL • ETL • Data Visualization • Machine Learning</p>
-    <!---<button onclick="toggleTheme()" class="mt-6 px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-blue-700 transition">🌓 Toggle Theme</button>--->
-    <button onclick="toggleTheme()" class="mt-6 mx-auto flex items-center justify-center rounded-full p-2 
-         transition border border-white hover:bg-white hover:text-blue-700">mode
+    <button onclick="toggleTheme()" class="mt-6 mx-auto flex items-center justify-center rounded-full p-2 transition border border-white hover:bg-white hover:text-blue-700">mode
       <div id="toggle-track" class="w-12 h-6 flex items-center rounded-full bg-white dark:bg-gray-700 transition">
         <div id="toggle-thumb" class="w-5 h-5 bg-blue-600 dark:bg-yellow-400 rounded-full transform transition-transform"></div>
       </div>
@@ -56,55 +42,144 @@
 
   <!-- Main Content -->
   <main class="max-w-5xl mx-auto py-16 px-6 space-y-16">
+
+    <!-- ===================== FEATURED: MEDICARE ANALYTICS ===================== -->
+    <section id="medicare-analytics">
+      <h2 class="flex items-center gap-3 text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-2">
+        <i data-lucide="stethoscope"></i> Featured Project: CMS Medicare Inpatient FFS Analytics (2019–2023)
+      </h2>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+        An end-to-end Medicare claims analytics project built on ~790K provider-DRG records spanning 5 years. Covers
+        descriptive analysis, multi-year trend modeling, CAH vs. non-CAH reimbursement dynamics, statistical process
+        control, outlier detection, and ML anomaly detection with applied AI governance analysis. Built in Python
+        (Pandas, Matplotlib, Scikit-learn, SHAP) with a PostgreSQL backend.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Card 1: Descriptive -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="font-bold text-lg mb-2">1. Descriptive Analysis — 2023 Snapshot</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+            Baseline analysis of 146K+ provider-DRG combinations. Key findings: hospitals bill 6.34x what Medicare pays
+            on average; Nevada is a persistent high outlier; urban providers receive $4,300 more per case than rural;
+            septicemia dominates discharge volume.
+          </p>
+          <p class="text-sm mb-3"><strong>Tech:</strong> Python, Pandas, Matplotlib, Seaborn, PostgreSQL</p>
+          <a href="https://github.com/tventura18/Portfolio" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
+
+        <!-- Card 2: Multi-Year Trend -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="font-bold text-lg mb-2">2. Multi-Year Trend Analysis (2019–2023)</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+            Tracked discharge volumes (−29% over 5 years), average Medicare payments (+18%), and charge-to-payment ratio
+            trends post-COVID. Demonstrated that the rural/urban payment gap widened over time, with urban providers
+            averaging $15.3K vs. rural at $11.5K per case by 2023.
+          </p>
+          <p class="text-sm mb-3"><strong>Tech:</strong> Python, Pandas, Matplotlib, PostgreSQL</p>
+          <a href="https://github.com/tventura18/Portfolio" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
+
+        <!-- Card 3: CAH vs Non-CAH -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="font-bold text-lg mb-2">3. CAH vs. Non-CAH Provider Analysis</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+            Joined the CMS Provider of Services file to segment rural providers by CAH status. Counterintuitive finding:
+            CAHs show lower Medicare payments AND lower charge-to-payment ratios than rural non-CAH hospitals, consistent
+            with cost-based reimbursement working as intended. Financial risk concentrates in rural non-CAH facilities
+            caught between fixed DRG rates and high-acuity patients.
+          </p>
+          <p class="text-sm mb-3"><strong>Tech:</strong> Python, Pandas, Matplotlib, Seaborn, PostgreSQL</p>
+          <a href="https://github.com/tventura18/Portfolio" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
+
+        <!-- Card 4: SPC + Funnel Plots -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="font-bold text-lg mb-2">4. Statistical Process Control &amp; Funnel Plot Analysis</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+            Applied multi-year control charts to detect state-level billing outliers, then identified SPC assumption
+            violations (uneven sample sizes, structural heterogeneity). Rebuilt using funnel plots, which corrected
+            Nevada's false-positive outlier status and identified Florida as a persistent high outlier across all 5
+            years. Maryland's consistent low outlier status traced to its all-payer rate-setting system — a natural
+            experiment in alternative payment models.
+          </p>
+          <p class="text-sm mb-3"><strong>Tech:</strong> Python, Pandas, Matplotlib, SciPy</p>
+          <a href="https://github.com/tventura18/Portfolio" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
+
+        <!-- Card 5: Isolation Forest + SHAP — full width -->
+        <div class="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition border-l-4 border-blue-500">
+          <div class="flex items-start gap-2 mb-2">
+            <span class="text-xs font-semibold bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded">AI Governance</span>
+            <h3 class="font-bold text-lg">5. Isolation Forest Anomaly Detection — Peer Group Modeling &amp; SHAP Explainability</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+            Trained an Isolation Forest model on 790K+ Medicare claims. Initial single-model approach flagged rural
+            providers at 33.5% and CAH providers at 58.9% — vs. 3.7% for urban — revealing structural bias from
+            training on an urban-majority dataset. Rebuilt as three peer-group models (CAH, rural non-CAH,
+            urban/suburban), each learning "normal" within its own structural context — mirroring CMS's own
+            provider-profiling methodology.
+          </p>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+            SHAP analysis revealed distinct anomaly drivers by group: geography dominates for CAHs; volume and data
+            year (post-COVID billing shifts) dominate for rural non-CAH; commercial payer mix dominates for
+            urban/suburban. Demonstrates that deploying the single model in a payment integrity context would
+            disproportionately audit rural and CAH providers — not due to wrongdoing, but due to structural
+            mismatch between billing patterns and model training data.
+          </p>
+          <p class="text-sm mb-3"><strong>Tech:</strong> Python, Scikit-learn (Isolation Forest), SHAP, Pandas, Matplotlib, PostgreSQL</p>
+          <a href="https://github.com/tventura18/Portfolio" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
+
+      </div>
+    </section>
+
     <!-- SQL Projects -->
     <section id="sql">
       <h2 class="flex items-center gap-3 text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-6">
-        <i data-lucide="database"></i> SQL & Data Analysis
+        <i data-lucide="database"></i> SQL &amp; Data Analysis
       </h2>
-       <!-- Healthcare SQL Projects -->
-     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Healthcare SQL Projects</h3>
+      <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Healthcare SQL Projects</h3>
       <div class="grid md:grid-cols-2 gap-8 mb-10">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h4 class="font-bold text-lg mb-2">Healthcare Claims Analysis</h4>
-            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-              Analyzed large-scale claims data using complex SQL joins and window functions to identify cost trends and reduce variance across providers.
-            </p>
-            <p class="text-sm mb-3"><strong>Tech stack:</strong> SQL, PostgreSQL, BigQuery, DBeaver</p>
-              <a href="https://github.com/tventura18/Portfolio/tree/main/FHIR_ETL/SQL" class="text-blue-600 dark:text-blue-400 hover:underline">
-                <i data-lucide="github">
-                </i> View on GitHub
-              </a>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            Analyzed large-scale claims data using complex SQL joins and window functions to identify cost trends and reduce variance across providers.
+          </p>
+          <p class="text-sm mb-3"><strong>Tech stack:</strong> SQL, PostgreSQL, BigQuery, DBeaver</p>
+          <a href="https://github.com/tventura18/Portfolio/tree/main/FHIR_ETL/SQL" class="text-blue-600 dark:text-blue-400 hover:underline">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
       </div>
 
-    <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-      <h4 class="font-bold text-lg mb-2">Provider Performance Metrics</h4>
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-        Created SQL-based dashboards tracking provider productivity, patient outcomes, and care quality KPIs for FQHC operations.
-      </p>
-      <p class="text-sm mb-3"><strong>Tech stack:</strong> SQL, Power BI, PostgreSQL</p>
-      <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-    </div>--->
-  </div>
-      </div>
-      <!-- Miscellaneous SQL Projects -->
       <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Miscellaneous SQL Projects</h3>
-     <div class="grid md:grid-cols-2 gap-8">
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-      <h4 class="font-bold text-lg mb-2">Life Expectancy Analysis</h4>
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-        <!---Built SQL queries to analyze sales trends, calculate conversion rates, and generate KPIs for an interactive dashboard.--->
-        Built SQL queries to clean, analyze Life Expectancy throughtout the world
-      </p>
-      <p class="text-sm mb-3"><strong>Tech stack:</strong> MySQL, Power BI</p>
-      <p>
-        <a href="https://github.com/tventura18/Portfolio/tree/main/Global_Life_Expectancy_Analysis_SQL" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
-          <i data-lucide="github"></i> View on GitHub
-        </a>
-      </p>
-    </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <h4 class="font-bold text-lg mb-2">Life Expectancy Analysis</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            Built SQL queries to clean and analyze life expectancy data across countries worldwide.
+          </p>
+          <p class="text-sm mb-3"><strong>Tech stack:</strong> MySQL, Power BI</p>
+          <a href="https://github.com/tventura18/Portfolio/tree/main/Global_Life_Expectancy_Analysis_SQL" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Data Engineering Projects -->
+    <!-- Data Engineering -->
     <section id="data-engineering">
       <h2 class="flex items-center gap-3 text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-6">
         <i data-lucide="workflow"></i> Data Engineering
@@ -113,123 +188,73 @@
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">FHIR to BigQuery Pipeline</h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Built a GCP-based ETL pipeline using Python to transform and load FHIR JSON data into BigQuery for analysis.</p>
-          <a href=">https://github.com/tventura18/Portfolio/tree/main/FHIR_ETL" class="text-blue-600 dark:text-blue-400 hover:underline">
+          <a href="https://github.com/tventura18/Portfolio/tree/main/FHIR_ETL" class="text-blue-600 dark:text-blue-400 hover:underline">
             <i data-lucide="github"></i> View on GitHub
           </a>
         </div>
-        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-          <h3 class="font-bold text-lg mb-2">Data Quality Automation</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Developed automated SQL and Python scripts for validating and profiling healthcare data pipelines.</p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>--->
       </div>
     </section>
 
-    <!-- Data Science Projects -->
+    <!-- Data Science -->
     <section id="data-science">
       <h2 class="flex items-center gap-3 text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-6">
         <i data-lucide="brain-circuit"></i> Data Science
       </h2>
-    
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Card 1 -->
-        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-          <h3 class="font-bold text-lg mb-2">Mushroom Classification Model</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            Trained a Decision Tree model to predict mushroom edibility and identify key biological traits influencing toxicity.
-          </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>--->
-    
-        <!-- Card 2 -->
-        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-          <h3 class="font-bold text-lg mb-2">Healthcare Cost Prediction</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            Developed a regression model to forecast patient length of stay and treatment costs using real-world hospital data.
-          </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>--->
-    
-        <!-- Card 3 (CKD) -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">CKD Prediction Pipeline — Clinical Text + Labs (NLP, TF-IDF)</h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            Machine learning pipeline that combines TF-IDF features from clinical notes with numeric lab values (eGFR, creatinine) to predict CKD.
+            Machine learning pipeline combining TF-IDF features from clinical notes with numeric lab values (eGFR, creatinine) to predict CKD.
           </p>
-          <ul class="text-sm text-gray-600 dark:text-gray-300 ml-5 mb-4">
+          <ul class="text-sm text-gray-600 dark:text-gray-300 ml-5 mb-4 list-disc">
             <li>Text preprocessing + TF-IDF vectorization for clinical notes.</li>
-            <li>Numeric feature scaling for lab values using <strong>StandardScaler</strong>.</li>
+            <li>Numeric feature scaling using <strong>StandardScaler</strong>.</li>
             <li>ColumnTransformer + Pipeline architecture for preprocessing + modeling.</li>
             <li>RandomForestClassifier with <code>class_weight='balanced'</code> and model persistence via <strong>joblib</strong>.</li>
           </ul>
           <p class="text-sm mb-3"><strong>Tech stack:</strong> Python, Pandas, Scikit-learn, NLP, TF-IDF, Random Forest</p>
-          <p>
-            <a href="https://github.com/tventura18/Portfolio/tree/main/Chronic_Kidney_Disease" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
-              <i data-lucide="github"></i> View on GitHub
-            </a>
-          </p>
+          <a href="https://github.com/tventura18/Portfolio/tree/main/Chronic_Kidney_Disease" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Power BI Projects -->
+    <!-- Power BI -->
     <section id="powerbi">
       <h2 class="flex items-center gap-3 text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-6">
-        <i data-lucide="bar-chart-3"></i> Power BI & Visualization
+        <i data-lucide="bar-chart-3"></i> Power BI &amp; Visualization
       </h2>
       <div class="grid md:grid-cols-2 gap-8">
-        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-          <h3 class="font-bold text-lg mb-2">Population Health Dashboard</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Created interactive dashboards tracking hypertension control, demographics, and social determinants across clinics.</p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>--->
-        <!---<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-          <h3 class="font-bold text-lg mb-2">Revenue Cycle Insights</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Developed Power BI reports analyzing claims, denials, and payments to improve financial efficiency.</p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View Project →</a>
-        </div>--->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">Healthcare Claims Analysis Dashboard</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Power BI Dashboard</p>
-          <ul class="text-sm text-gray-600 dark:text-gray-300 ml-5 mb-4">
-            <li>An interactive Power BI dashboard connected to Google BigQuery that analyzes healthcare claim 
-                values and encounter types across multiple facilities. Developed using DAX measures for dynamic 
-                filtering and real-time insights.
-            </li>
-          </ul>
-          <p>
-            <a href="https://github.com/tventura18/Portfolio/blob/main/FHIR_ETL/Power_BI/encounter__claims_chart.pdf" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
-              <i data-lucide="github"></i> View on GitHub
-            </a>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            Interactive Power BI dashboard connected to Google BigQuery analyzing healthcare claim values and encounter types across multiple facilities. Developed using DAX measures for dynamic filtering and real-time insights.
           </p>
+          <a href="https://github.com/tventura18/Portfolio/blob/main/FHIR_ETL/Power_BI/encounter__claims_chart.pdf" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl transition">
           <h3 class="font-bold text-lg mb-2">World Life Expectancy Dashboard</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Power BI Dashboard</p>
-          <ul class="text-sm text-gray-600 dark:text-gray-300 ml-5 mb-4">
-            <li>An interactive Power BI dashboard connected to MySQL that analyzes Life Expectancy from 2007-2022. Developed using DAX measures for dynamic 
-                filtering and real-time insights.
-            </li>
-          </ul>
-          <p class="text-sm mb-3"><strong>Tech stack:</strong> MySQL, Power BI</p>
-          <p>
-            <a href="https://github.com/tventura18/Portfolio/tree/main/Life_Expectancy_Power_BI" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
-              <i data-lucide="github"></i> View on GitHub
-            </a>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            Interactive Power BI dashboard connected to MySQL analyzing life expectancy from 2007–2022. Developed using DAX measures for dynamic filtering and real-time insights.
           </p>
+          <p class="text-sm mb-3"><strong>Tech stack:</strong> MySQL, Power BI</p>
+          <a href="https://github.com/tventura18/Portfolio/tree/main/Life_Expectancy_Power_BI" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
         </div>
       </div>
     </section>
-  </main>
 
+  </main>
 
   <!-- Footer -->
   <footer class="bg-gray-800 dark:bg-gray-900 text-gray-300 text-center py-8">
-    <p>© 2025 Toni Ventura | <a href="mailto:tmventura222@gmail.com" class="text-blue-400 hover:underline">Contact Me</a></p>
+    <p>© 2025 Toni Ventura | <a href="mailto:toni.mascarenas@gmail.com" class="text-blue-400 hover:underline">Contact Me</a></p>
   </footer>
 
-  <script>
-    lucide.createIcons();
-  </script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
